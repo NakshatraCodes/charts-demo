@@ -5,5 +5,5 @@ export default styled.div`
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: ${(props) => (props.dark == "dark" ? "#100c2a" : "white")};
+  background-color: ${(props) => (props.dark === "dark" ? "#100c2a" : "white")};
 `;

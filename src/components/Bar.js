@@ -15,8 +15,8 @@ const Bar = ({ theme }) => {
           data: ["Case Days to Close", "Open Cases Age"],
         },
         grid: {
-          left: "3%",
-          right: "4%",
+          left: "1%",
+          right: "1%",
           bottom: "3%",
           containLabel: true,
         },
@@ -27,24 +27,29 @@ const Bar = ({ theme }) => {
         yAxis: {
           type: "category",
           data: [
-            "Employee Grievance",
-            "Compensation",
-            "Benefits",
-            "Data Change",
+            "Level of Absence",
+            "HR Policies Inquiry",
             "Employee Relations",
-            "HR Policy",
+            "Data Change",
+            "Benefits",
+            "Compensation",
+            "Employee Grievance",
           ],
         },
         series: [
           {
             name: "Case Days to Close",
             type: "bar",
-            data: [18203, 23489, 29034, 104970, 131744, 63230],
+            barGap: "0%",
+            barCategoryGap: "20%",
+            data: [23.2, 23.9, 38.6, 41.7, 48.7, 60.6, 83.9],
           },
           {
             name: "Open Cases Age",
             type: "bar",
-            data: [19325, 23438, 31000, 121594, 134141, 68807],
+            barGap: "0%",
+            barCategoryGap: "20%",
+            data: [15.9, 15.5, 28.7, 54.5, 53.6, 68.3, 64],
           },
         ],
       }}

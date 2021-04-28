@@ -3,19 +3,26 @@ import Button from "./components/Button";
 import Wrapper from "./components/Wrapper";
 import BodyContainer from "./components/BodyContainer";
 import ToggleButton from "./components/ToggleButton";
+import ChartContainer from "./components/ChartContainer";
 
-import CandleStick from "./components/CandleStick";
+import Chart2 from "./components/Chart2";
 import Bar from "./components/Bar";
+import BarWithNegativeValues from "./components/BarWithNegativeValues";
 
 const App = () => {
-  const [active, setActive] = useState("bar");
+  const [active, setActive] = useState("chart1");
   const [theme, setTheme] = useState("light");
 
   const renderChart = () => {
-    if (active === "candle") {
-      return <CandleStick theme={theme} />;
+    if (active === "chart2") {
+      return <Chart2 theme={theme} />;
     } else {
-      return <Bar theme={theme} />;
+      return (
+        <ChartContainer>
+          <Bar theme={theme} />
+          <BarWithNegativeValues theme={theme} />
+        </ChartContainer>
+      );
     }
   };
 
@@ -32,14 +39,17 @@ const App = () => {
   return (
     <BodyContainer dark={theme}>
       <Wrapper>
-        <Button primary={active === "bar"} onClick={() => setActive("bar")}>
-          Bar
+        <Button
+          primary={active === "chart1"}
+          onClick={() => setActive("chart1")}
+        >
+          Chart 1
         </Button>
         <Button
-          primary={active === "candle"}
-          onClick={() => setActive("candle")}
+          primary={active === "chart2"}
+          onClick={() => setActive("chart2")}
         >
-          CandleStick
+          Chart 2
         </Button>
         <ToggleButton changeTheme={changeTheme} />
         {renderChart()}
