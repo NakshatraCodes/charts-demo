@@ -1,7 +1,30 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
 
-const Bar = ({ theme }) => {
+const Bar = ({ theme, data }) => {
+  const getYAxis = () => {
+    let yAxisData = [];
+    data.forEach((element) => {
+      yAxisData.push(element.name);
+    });
+    return yAxisData;
+  };
+
+  const getSeries = () => {
+    let series = [];
+    data.forEach((element) => {
+      let value = element.caseDaysToClose - element.openCasesAge;
+      let obj = {
+        value: value.toFixed(2),
+        label: {
+          show: true,
+          position: value > 1 ? "right" : "left",
+        },
+      };
+      series.push(obj);
+    });
+    return series;
+  };
   return (
     <ReactEcharts
       option={{
@@ -20,19 +43,11 @@ const Bar = ({ theme }) => {
         xAxis: {
           type: "value",
           position: "top",
-          boundaryGap: [0.05, 0.05],
+          boundaryGap: [0.1, 0.05],
         },
         yAxis: {
           type: "category",
-          data: [
-            "Level of Absence",
-            "HR Policies Inquiry",
-            "Employee Relations",
-            "Data Change",
-            "Benefits",
-            "Compensation",
-            "Employee Grievance",
-          ],
+          data: getYAxis(),
         },
         series: [
           {
@@ -41,57 +56,7 @@ const Bar = ({ theme }) => {
               show: true,
               position: "left",
             },
-            data: [
-              {
-                value: +7.3,
-                label: {
-                  show: true,
-                  position: "right",
-                },
-              },
-              {
-                value: +8.4,
-                label: {
-                  show: true,
-                  position: "right",
-                },
-              },
-              {
-                value: +9.9,
-                label: {
-                  show: true,
-                  position: "right",
-                },
-              },
-              {
-                value: -12.8,
-                label: {
-                  show: true,
-                  position: "left",
-                },
-              },
-              {
-                value: -4.9,
-                label: {
-                  show: true,
-                  position: "left",
-                },
-              },
-              {
-                value: -7.7,
-                label: {
-                  show: true,
-                  position: "left",
-                },
-              },
-              {
-                value: +19.9,
-                label: {
-                  show: true,
-                  position: "right",
-                },
-              },
-            ],
+            data: getSeries(),
           },
         ],
       }}

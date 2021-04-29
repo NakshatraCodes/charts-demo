@@ -1,7 +1,31 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
 
-const Bar = ({ theme }) => {
+const Bar = ({ theme, data }) => {
+  const getYAxis = () => {
+    let yAxisData = [];
+    data.forEach((element) => {
+      yAxisData.push(element.name);
+    });
+    return yAxisData;
+  };
+
+  const getSeries1 = () => {
+    let series1 = [];
+    data.forEach((element) => {
+      series1.push(element.caseDaysToClose);
+    });
+    return series1;
+  };
+
+  const getSeries2 = () => {
+    let series2 = [];
+    data.forEach((element) => {
+      series2.push(element.openCasesAge);
+    });
+    return series2;
+  };
+
   return (
     <ReactEcharts
       option={{
@@ -26,15 +50,7 @@ const Bar = ({ theme }) => {
         },
         yAxis: {
           type: "category",
-          data: [
-            "Level of Absence",
-            "HR Policies Inquiry",
-            "Employee Relations",
-            "Data Change",
-            "Benefits",
-            "Compensation",
-            "Employee Grievance",
-          ],
+          data: getYAxis(),
         },
         series: [
           {
@@ -42,14 +58,14 @@ const Bar = ({ theme }) => {
             type: "bar",
             barGap: "0%",
             barCategoryGap: "20%",
-            data: [23.2, 23.9, 38.6, 41.7, 48.7, 60.6, 83.9],
+            data: getSeries1(),
           },
           {
             name: "Open Cases Age",
             type: "bar",
             barGap: "0%",
             barCategoryGap: "20%",
-            data: [15.9, 15.5, 28.7, 54.5, 53.6, 68.3, 64],
+            data: getSeries2(),
           },
         ],
       }}
