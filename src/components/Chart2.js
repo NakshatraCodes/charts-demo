@@ -55,7 +55,7 @@ const Chart2 = ({ theme }) => {
             },
             emphasis: {
               itemStyle: {
-                barBorderColor: "rgba(0,0,0,0)",
+                borderColor: "rgba(0,0,0,0)",
                 color: "rgba(0,0,0,0)",
               },
             },
@@ -67,8 +67,8 @@ const Chart2 = ({ theme }) => {
             type: "bar",
             stack: "empty",
             itemStyle: {
-              barBorderColor: "rgb(145,204,117)",
-              color: "rgb(145,204,117)",
+              borderColor: "rgb(190,241,198)",
+              color: "rgb(190,241,198)",
             },
             label: {
               show: true,
@@ -81,8 +81,8 @@ const Chart2 = ({ theme }) => {
             type: "bar",
             stack: "empty",
             itemStyle: {
-              barBorderColor: "rgb(238,102,102)",
-              color: "rgb(238,102,102)",
+              borderColor: "rgb(249,178,194)",
+              color: "rgb(249,178,194)",
             },
             label: {
               show: true,
@@ -95,8 +95,8 @@ const Chart2 = ({ theme }) => {
             type: "bar",
             stack: "empty",
             itemStyle: {
-              barBorderColor: "rgb(125,131,145)",
-              color: "rgb(125,131,145)",
+              borderColor: "rgb(233,233,235)",
+              color: "rgb(233,233,235)",
             },
             label: {
               show: true,
@@ -108,6 +108,10 @@ const Chart2 = ({ theme }) => {
             name: "Net Change",
             type: "bar",
             stack: "empty",
+            itemStyle: {
+              borderColor: "rgb(200,231,249)",
+              color: "rgb(200,231,249)",
+            },
             label: {
               show: true,
               position: "top",

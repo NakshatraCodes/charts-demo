@@ -57,15 +57,35 @@ const Bar = ({ theme, data }) => {
             name: "Case Days to Close",
             type: "bar",
             barGap: "0%",
-            barCategoryGap: "20%",
+            barCategoryGap: "25%",
+            barWidth: "30%",
             data: getSeries1(),
+            itemStyle: {
+              borderColor: "rgb(97,180,230)",
+              color: "rgb(97,180,230)",
+            },
+            label: {
+              show: true,
+              position: "right",
+              color: "rgb(97,180,230)",
+            },
           },
           {
             name: "Open Cases Age",
             type: "bar",
             barGap: "0%",
-            barCategoryGap: "20%",
+            barCategoryGap: "25%",
+            barWidth: "30%",
             data: getSeries2(),
+            itemStyle: {
+              borderColor: "rgb(253,143,126)",
+              color: "rgb(253,143,126)",
+            },
+            label: {
+              show: true,
+              position: "right",
+              color: "rgb(253,143,126)",
+            },
           },
         ],
       }}

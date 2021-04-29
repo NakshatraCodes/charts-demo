@@ -19,6 +19,7 @@ const Bar = ({ theme, data }) => {
         label: {
           show: true,
           position: value > 1 ? "right" : "left",
+          color: "rgb(91,207,198)",
         },
       };
       series.push(obj);
@@ -55,6 +56,10 @@ const Bar = ({ theme, data }) => {
             label: {
               show: true,
               position: "left",
+            },
+            itemStyle: {
+              borderColor: "rgb(91,207,198)",
+              color: "rgb(91,207,198)",
             },
             data: getSeries(),
           },
