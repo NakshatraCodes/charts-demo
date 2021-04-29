@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/charts-demo/static/css/main.b8c321ea.chunk.css",
-    "main.js": "/charts-demo/static/js/main.50622804.chunk.js",
-    "main.js.map": "/charts-demo/static/js/main.50622804.chunk.js.map",
+    "main.js": "/charts-demo/static/js/main.7a93ccbb.chunk.js",
+    "main.js.map": "/charts-demo/static/js/main.7a93ccbb.chunk.js.map",
     "runtime-main.js": "/charts-demo/static/js/runtime-main.b9846256.js",
     "runtime-main.js.map": "/charts-demo/static/js/runtime-main.b9846256.js.map",
-    "static/js/2.83bd869e.chunk.js": "/charts-demo/static/js/2.83bd869e.chunk.js",
-    "static/js/2.83bd869e.chunk.js.map": "/charts-demo/static/js/2.83bd869e.chunk.js.map",
+    "static/js/2.a8d6fa6f.chunk.js": "/charts-demo/static/js/2.a8d6fa6f.chunk.js",
+    "static/js/2.a8d6fa6f.chunk.js.map": "/charts-demo/static/js/2.a8d6fa6f.chunk.js.map",
     "index.html": "/charts-demo/index.html",
     "static/css/main.b8c321ea.chunk.css.map": "/charts-demo/static/css/main.b8c321ea.chunk.css.map",
-    "static/js/2.83bd869e.chunk.js.LICENSE.txt": "/charts-demo/static/js/2.83bd869e.chunk.js.LICENSE.txt"
+    "static/js/2.a8d6fa6f.chunk.js.LICENSE.txt": "/charts-demo/static/js/2.a8d6fa6f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b9846256.js",
-    "static/js/2.83bd869e.chunk.js",
+    "static/js/2.a8d6fa6f.chunk.js",
     "static/css/main.b8c321ea.chunk.css",
-    "static/js/main.50622804.chunk.js"
+    "static/js/main.7a93ccbb.chunk.js"
   ]
 }
