@@ -11,14 +11,21 @@ import Bar from "./components/Bar";
 import BarWithNegativeValues from "./components/BarWithNegativeValues";
 
 import config from "./data/config";
+import config2 from "./data/config2";
+import Container from "./components/Container";
 
 const App = () => {
   const initialData = config.reverse();
   const [active, setActive] = useState("chart1");
   const [theme, setTheme] = useState("light");
   const [data, setData] = useState(initialData);
+  const [data2, setData2] = useState(config2);
+
   const [inputValue, setInputValue] = useState(
     JSON.stringify(initialData, null, 4)
+  );
+  const [inputValue2, setInputValue2] = useState(
+    JSON.stringify(config2, null, 4)
   );
 
   console.log(initialData);
@@ -27,15 +34,41 @@ const App = () => {
     setData(JSON.parse(inputValue));
   };
 
+  const saveData2 = () => {
+    setData2(JSON.parse(inputValue2));
+  };
+
   const renderChart = () => {
     if (active === "chart2") {
-      return <Chart2 theme={theme} />;
+      return (
+        <Container>
+          <Chart2 theme={theme} data={data2} />
+          <ConfigInput
+            value={inputValue2}
+            onChange={(e) => setInputValue2(e.target.value)}
+            spellCheck="false"
+          />
+          <Button primary onClick={() => saveData2()}>
+            Save
+          </Button>
+        </Container>
+      );
     } else {
       return (
-        <ChartContainer>
-          <Bar theme={theme} data={data} />
-          <BarWithNegativeValues theme={theme} data={data} />
-        </ChartContainer>
+        <Container>
+          <ChartContainer>
+            <Bar theme={theme} data={data} />
+            <BarWithNegativeValues theme={theme} data={data} />
+          </ChartContainer>
+          <ConfigInput
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            spellCheck="false"
+          />
+          <Button primary onClick={() => saveData()}>
+            Save
+          </Button>
+        </Container>
       );
     }
   };
@@ -67,14 +100,6 @@ const App = () => {
         </Button>
         <ToggleButton changeTheme={changeTheme} />
         {renderChart()}
-        <ConfigInput
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          spellCheck="false"
-        />
-        <Button primary onClick={() => saveData()}>
-          Save
-        </Button>
       </Wrapper>
     </BodyContainer>
   );

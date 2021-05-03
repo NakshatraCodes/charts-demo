@@ -1,7 +1,83 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
 
-const Chart2 = ({ theme }) => {
+const Chart2 = ({ theme, data }) => {
+  const computeType = (type) => {
+    let arr = [];
+    data.forEach((element) => {
+      element.metadata.forEach((node) => {
+        if (element.type === type) {
+          arr.push(Math.abs(node.value));
+        } else {
+          arr.push("-");
+        }
+      });
+    });
+    return arr;
+  };
+
+  const computeXAxis = (type) => {
+    let arr = [];
+    data.forEach((element) => {
+      element.metadata.forEach((node) => {
+        arr.push(node.name);
+      });
+    });
+    return arr;
+  };
+
+  const computeNetChange = (type) => {
+    let arr = [];
+    let sum = 0;
+    data.forEach((element) => {
+      element.metadata.forEach((node) => {
+        if (element.type === "Net Change") {
+          arr.push(sum);
+        } else {
+          arr.push("-");
+          sum += node.value;
+        }
+      });
+    });
+    return arr;
+  };
+
+  const computeLegend = () => {
+    let legend = [];
+    data.forEach((element) => {
+      legend.push(element.type);
+    });
+    return legend;
+  };
+
+  const computeEmpty = () => {
+    let arr = [];
+    let sum = 0;
+    let flag = 1;
+    data.forEach((element, i) => {
+      element.metadata.forEach((node) => {
+        if (flag === 1) {
+          arr.push(0);
+          sum += node.value;
+        } else if (
+          element.type === "Starts" ||
+          element.type === "Discrepencies"
+        ) {
+          arr.push(sum);
+          sum += node.value;
+        } else if (element.type === "Exits") {
+          arr.push(sum - Math.abs(node.value));
+          sum -= Math.abs(node.value);
+        } else {
+          arr.push("-");
+        }
+        flag = 0;
+      });
+    });
+    console.log(arr);
+    return arr;
+  };
+
   return (
     <ReactEcharts
       option={{
@@ -21,7 +97,7 @@ const Chart2 = ({ theme }) => {
           },
         },
         legend: {
-          data: ["Starts", "Exits", "Discrepencies", "Net Change"],
+          data: computeLegend(),
         },
         grid: {
           left: "3%",
@@ -32,14 +108,7 @@ const Chart2 = ({ theme }) => {
         xAxis: {
           type: "category",
           splitLine: { show: false },
-          data: [
-            "Expansion",
-            "Replacement",
-            "Involuntary Turnover",
-            "Voluntary Turnover",
-            "Discrepencies",
-            "Net Change",
-          ],
+          data: computeXAxis(),
         },
         yAxis: {
           type: "value",
@@ -60,7 +129,8 @@ const Chart2 = ({ theme }) => {
               },
             },
             barWidth: "95%",
-            data: [0, 394, 604, 372, 372, "-"],
+            data: computeEmpty(),
+            // [0, 394, 604, 372, 372, "-"]
           },
           {
             name: "Starts",
@@ -74,7 +144,7 @@ const Chart2 = ({ theme }) => {
               show: true,
               position: "top",
             },
-            data: [394, 326, "-", "-", "-", "-"],
+            data: computeType("Starts"),
           },
           {
             name: "Exits",
@@ -88,7 +158,7 @@ const Chart2 = ({ theme }) => {
               show: true,
               position: "bottom",
             },
-            data: ["-", "-", 116, 232, "-", "-"],
+            data: computeType("Exits"),
           },
           {
             name: "Discrepencies",
@@ -102,7 +172,7 @@ const Chart2 = ({ theme }) => {
               show: true,
               position: "bottom",
             },
-            data: ["-", "-", "-", "-", 7, "-"],
+            data: computeType("Discrepencies"),
           },
           {
             name: "Net Change",
@@ -116,7 +186,7 @@ const Chart2 = ({ theme }) => {
               show: true,
               position: "top",
             },
-            data: ["-", "-", "-", "-", "-", 393],
+            data: computeNetChange(),
           },
         ],
       }}
