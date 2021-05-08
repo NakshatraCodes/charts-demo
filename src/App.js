@@ -1,107 +1,40 @@
 import React, { useState } from "react";
-import Button from "./components/Button";
-import Wrapper from "./components/Wrapper";
-import BodyContainer from "./components/BodyContainer";
-import ToggleButton from "./components/ToggleButton";
-import ChartContainer from "./components/ChartContainer";
-import ConfigInput from "./components/ConfigInput";
-
-import Chart2 from "./components/Chart2";
-import Bar from "./components/Bar";
-import BarWithNegativeValues from "./components/BarWithNegativeValues";
-
-import config from "./data/config";
-import config2 from "./data/config2";
-import Container from "./components/Container";
+import Nav from "./components/Nav";
+import RootContainer from "./components/RootContainer";
+import SideBar from "./components/SideBar/index";
+import GridArea from "./components/GridArea/index";
 
 const App = () => {
-  const initialData = config.reverse();
-  const [active, setActive] = useState("chart1");
-  const [theme, setTheme] = useState("light");
-  const [data, setData] = useState(initialData);
-  const [data2, setData2] = useState(config2);
+  const [layout, setLayout] = useState([
+    { x: 0, y: 0, w: 4, h: 8, i: "0", chartType: "Bar" },
+    { x: 4, y: 0, w: 4, h: 8, i: "1", chartType: "Waterfall" },
+    { x: 8, y: 0, w: 4, h: 8, i: "2", chartType: "Waterfall" },
+  ]);
 
-  const [inputValue, setInputValue] = useState(
-    JSON.stringify(initialData, null, 4)
-  );
-  const [inputValue2, setInputValue2] = useState(
-    JSON.stringify(config2, null, 4)
-  );
-
-  console.log(initialData);
-
-  const saveData = () => {
-    setData(JSON.parse(inputValue));
+  const onChartAdd = (activeChart) => {
+    let chartType = activeChart === "chart1" ? "Waterfall" : "Bar";
+    let i = (parseInt(layout.length - 1) + 1).toString();
+    const newLayout = [
+      ...layout,
+      {
+        x: 0,
+        y: 0,
+        w: 4,
+        h: 8,
+        chartType,
+        i,
+      },
+    ];
+    setLayout(newLayout);
+    console.log(layout);
   };
-
-  const saveData2 = () => {
-    setData2(JSON.parse(inputValue2));
-  };
-
-  const renderChart = () => {
-    if (active === "chart2") {
-      return (
-        <Container>
-          <Chart2 theme={theme} data={data2} />
-          <ConfigInput
-            value={inputValue2}
-            onChange={(e) => setInputValue2(e.target.value)}
-            spellCheck="false"
-          />
-          <Button primary onClick={() => saveData2()}>
-            Save
-          </Button>
-        </Container>
-      );
-    } else {
-      return (
-        <Container>
-          <ChartContainer>
-            <Bar theme={theme} data={data} />
-            <BarWithNegativeValues theme={theme} data={data} />
-          </ChartContainer>
-          <ConfigInput
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            spellCheck="false"
-          />
-          <Button primary onClick={() => saveData()}>
-            Save
-          </Button>
-        </Container>
-      );
-    }
-  };
-
-  const changeTheme = () => {
-    if (theme === "light") {
-      document.body.style.backgroundColor = "#100c2a";
-      setTheme("dark");
-    } else {
-      document.body.style.backgroundColor = "white";
-      setTheme("light");
-    }
-  };
-
   return (
-    <BodyContainer dark={theme}>
-      <Wrapper>
-        <Button
-          primary={active === "chart1"}
-          onClick={() => setActive("chart1")}
-        >
-          Chart 1
-        </Button>
-        <Button
-          primary={active === "chart2"}
-          onClick={() => setActive("chart2")}
-        >
-          Chart 2
-        </Button>
-        <ToggleButton changeTheme={changeTheme} />
-        {renderChart()}
-      </Wrapper>
-    </BodyContainer>
+    <RootContainer>
+      <Nav />
+      <GridArea layout={layout} />
+      <SideBar onAddClick={onChartAdd}></SideBar>
+    </RootContainer>
   );
 };
+
 export default App;

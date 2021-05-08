@@ -35,9 +35,6 @@ const Bar = ({ theme, data }) => {
             type: "shadow",
           },
         },
-        legend: {
-          data: ["Case Days to Close", "Open Cases Age"],
-        },
         grid: {
           left: "1%",
           right: "1%",
@@ -65,7 +62,7 @@ const Bar = ({ theme, data }) => {
               color: "rgb(97,180,230)",
             },
             label: {
-              show: true,
+              show: false,
               position: "right",
               color: "rgb(97,180,230)",
             },
@@ -82,7 +79,7 @@ const Bar = ({ theme, data }) => {
               color: "rgb(253,143,126)",
             },
             label: {
-              show: true,
+              show: false,
               position: "right",
               color: "rgb(253,143,126)",
             },
@@ -90,7 +87,13 @@ const Bar = ({ theme, data }) => {
         ],
       }}
       theme={theme}
-      style={{ height: "80vh", width: "80vw" }}
+      style={{
+        height: "100%",
+        width: "100%",
+        minHeight: "250px",
+        boxSizing: "border-box",
+        padding: "20px",
+      }}
     />
   );
 };

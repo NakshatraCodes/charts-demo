@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export default styled.div`
-  margin: 0;
-  padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => (props.column ? "column" : "row")};
+  justify-content: center;
+  align-items: center;
 `;

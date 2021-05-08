@@ -74,7 +74,7 @@ const Chart2 = ({ theme, data }) => {
         flag = 0;
       });
     });
-    console.log(arr);
+    // console.log(arr);
     return arr;
   };
 
@@ -95,9 +95,6 @@ const Chart2 = ({ theme, data }) => {
             }
             return tar.name + "<br/>" + tar.seriesName + " : " + tar.value;
           },
-        },
-        legend: {
-          data: computeLegend(),
         },
         grid: {
           left: "3%",
@@ -191,7 +188,13 @@ const Chart2 = ({ theme, data }) => {
         ],
       }}
       theme={theme}
-      style={{ height: "80vh", width: "80vw" }}
+      style={{
+        height: "100%",
+        width: "100%",
+        minHeight: "250px",
+        padding: "20px",
+        boxSizing: "border-box",
+      }}
     />
   );
 };

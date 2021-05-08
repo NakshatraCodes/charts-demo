@@ -5,12 +5,12 @@ export default styled.button`
   border: none;
   color: white;
   margin: 5px 10px;
-  padding: 15px 32px;
+  padding: 16px 18px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  border-radius: 10px;
+  border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
 `;

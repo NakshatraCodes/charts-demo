@@ -66,7 +66,7 @@ const Bar = ({ theme, data }) => {
         ],
       }}
       theme={theme}
-      style={{ height: "80vh", width: "80vw" }}
+      style={{ height: "100%", width: "100%", minHeight: "200px" }}
     />
   );
 };
